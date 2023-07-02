@@ -1,0 +1,65 @@
+{
+    "dxUrl": "http://8.141.174.247:3000",
+    "key": "888",
+    "qq":"",
+    "ql": {
+        "qlUrl": "http://8.141.174.247:5701",
+        "qlClientID": "XtZ-a9MNqpCF",
+        "qlClientSecret": "4_3ezC8GuuSEX3DKw9HELLr-"
+    },
+    "wxPusher": {
+        "Token": "",
+        "MyUID": ""
+    },
+    "notice": "这里是测试公告",
+    "tips": {
+        "topTips": "这里是测试top提示",
+        "UpperRight": "这里是测试UR提示"
+    },
+    "pay": {
+        "status": false,
+        "type": "vmqpay",
+        "alipay": {},
+        "vmqpay": {
+            "vmqUrl": "http://vpay.onecc.cc",
+            "key": "c4859a4ba938b221ad3ad73ea99c00d4",
+            "payType": 1,
+            "upPrice": "0.8",
+            "getPrice": "0.01",
+            "wechatPayQrCodeUrl": "wxp://f2f0jv_eMj2I9m58FXz9iVdt0NDeOYDsKwFdN6Y4ZzwlKMSrm2Cp8DtI-cp-cT9fxKxq",
+            "aliPayQrCodeUrl": "https://qr.alipay.com/fkx10584zapm1aafhunyubf"
+        }
+    },
+    "appList": [
+        {
+            "app": "gqcq",
+            "name": "广汽传祺",
+            "ValueName": {
+                "app": "gqcq_data",
+                "wx": "gqcqWxCookie",
+                "web": null
+            }
+        },
+        {
+            "app": "qtx",
+            "name": "青碳行",
+            "ValueName": {
+                "app": "qtx_data",
+                "wx": null,
+                "web": null
+            },
+            "config": {
+                "deviceCoding": null
+            }
+        },
+        {
+            "app": "default",
+            "name": "默认",
+            "ValueName": {
+                "app": null,
+                "wx": null,
+                "web": null
+            }
+        }
+    ]
+}
