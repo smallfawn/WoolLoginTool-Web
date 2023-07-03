@@ -1,7 +1,7 @@
 import axios from "axios";
-import VueMain from '../main'
 import utils from "./utils";
 import handler from "./handler";
+import {useBaseStore} from '@/store/index';
 
 export default {
     getTopTip,
@@ -39,6 +39,7 @@ async function getTopTip() {
     return getRes
 }
 async function getVcode(app, type) {
+    const baseStore = useBaseStore();
     let options = {
         method: "POST",
         url: "/api/sendcode/index.php",
@@ -50,37 +51,38 @@ async function getVcode(app, type) {
             'timestamp': Date.now(),
             'Content-Type': "applocation/json",
             'x': utils.Jm(utils.CP({
-                mobile: VueMain.store.state.PCode,
+                mobile: baseStore.PCode,
             }))
         },
         data: JSON.stringify({
-            mobile: VueMain.store.state.PCode,
+            mobile: baseStore.PCode,
         }),
     }
     let { data: sendcodeRes } = await axios.request(options)
-    console.log(app, type, VueMain.store.state.PCode);
+    console.log(app, type, baseStore.PCode);
     return sendcodeRes
 }
 async function doLogin(app, type) {
+    const baseStore = useBaseStore();
     let options = {
         method: "POST",
         url: "/api/login/index.php",
         params: {
             app: app,
             type: type,
-            isUp: VueMain.store.state.isUpdate,
+            isUp: baseStore.isUpdate,
         },
         headers: {
             'timestamp': Date.now(),
             'Content-Type': "applocation/json",
             'x': utils.Jm(utils.CP({
-                mobile: VueMain.store.state.PCode,
-                code: VueMain.store.state.VCode
+                mobile: baseStore.PCode,
+                code: baseStore.VCode
             }))
         },
         data: JSON.stringify({
-            mobile: VueMain.store.state.PCode,
-            code: VueMain.store.state.VCode
+            mobile: baseStore.PCode,
+            code: baseStore.VCode
         }),
     }
     let { data: doLoginRes } = await axios.request(options)
@@ -106,15 +108,16 @@ async function checkOrder(orderId) {
 }
 
 async function getOrder() {
-    let getPayConfig = VueMain.store.state.payConfig
+    const baseStore = useBaseStore();
+    let getPayConfig = baseStore.payConfig
     let { data: getorderRes } = await axios.get("./api/pay/getorder/index.php", {
         params: {
             payId: "wlp" + Date.now(),
-            param: VueMain.store.state.PCode,
+            param: baseStore.PCode,
             type: getPayConfig.payConfig.payType,
             price: getPayConfig.payConfig.getPrice,
             sign: utils.md5_encrypt(
-                `${"wlp" + Date.now()}${VueMain.store.state.PCode}${getPayConfig.payConfig.payType
+                `${"wlp" + Date.now()}${baseStore.PCode}${getPayConfig.payConfig.payType
                 }${getPayConfig.payConfig.getPrice}${getPayConfig.payConfig.key
                 }`
             ).toString(),
